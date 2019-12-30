@@ -1,24 +1,24 @@
 #include <math.h>
 #include <stdlib.h>
 
-typedef struct slist
+typedef struct dlist
 {
     int value;
-    struct slist *pre;
-    struct slist *next;
-} sList;
+    struct dlist *pre;
+    struct dlist *next;
+} dList;
 
-void free_list(sList *);
-int is_prime_list(int, sList *);
-void add_prime_list(sList *, int);
-void get_primes_list(sList *, int);
-int is_circular_list(int, sList *);
+void free_list(dList *);
+int is_prime_list(int, dList *);
+void add_prime_list(dList *, int);
+void get_primes_list(dList *, int);
+int is_circular_list(int, dList *);
 
 int solution_1(int upper_limit)
 {
-    sList *prime, *entry;
+    dList *prime, *entry;
     int s = 0;
-    prime = (sList *)malloc(sizeof(sList));
+    prime = (dList *)malloc(sizeof(dList));
     prime->value = 2;
     prime->pre = NULL;
     prime->next = NULL;
@@ -36,7 +36,7 @@ int solution_1(int upper_limit)
     return s;
 }
 
-void free_list(sList *n)
+void free_list(dList *n)
 {
     while (n->next != NULL)
     {
@@ -46,7 +46,7 @@ void free_list(sList *n)
     free(n);
 }
 
-int is_prime_list(int n, sList *prime)
+int is_prime_list(int n, dList *prime)
 {
     if (prime == NULL || prime->value > sqrt(n))
     {
@@ -65,12 +65,12 @@ int is_prime_list(int n, sList *prime)
     }
 }
 
-void add_prime_list(sList *prime, int value)
+void add_prime_list(dList *prime, int value)
 {
-    sList *n, *l;
+    dList *n, *l;
     int d = 0;
     n = prime;
-    l = (sList *)malloc(sizeof(sList));
+    l = (dList *)malloc(sizeof(dList));
     l->value = value;
     l->pre = NULL;
     l->next = NULL;
@@ -82,7 +82,7 @@ void add_prime_list(sList *prime, int value)
     l->pre = n;
 }
 
-void get_primes_list(sList *prime, int upper_limit)
+void get_primes_list(dList *prime, int upper_limit)
 {
     for (int i = 3; i < upper_limit; i += 2)
     {
@@ -93,7 +93,7 @@ void get_primes_list(sList *prime, int upper_limit)
     }
 }
 
-int is_circular_list(int value, sList *prime)
+int is_circular_list(int value, dList *prime)
 {
     int n, v;
     int b = 1;
