@@ -16,7 +16,7 @@ int solution_1(int cnt)
     l1 = sizeof(p1) / sizeof(int);
     l2 = sizeof(p2) / sizeof(int);
     l3 = sizeof(p3) / sizeof(int);
-    while (n < cnt)
+    while (1)
     {
         for (int i = 0; i < l1; i++)
         {
@@ -37,13 +37,17 @@ int solution_1(int cnt)
                     {
                         s += d;
                         n++;
+                        if (n == cnt)
+                        {
+                            return s;
+                        }
+                        
                     }
                 }
             }
         }
         digits++;
     }
-    return s;
 }
 
 int is_prime(int num)
